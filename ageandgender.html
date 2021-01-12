@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="face-api.min.js"></script>
+    <script defer src="ageandgender.js"></script>
+    <title>Age and Gender Detection</title>
+    <style>
+      canvas {
+        position: absolute;
+      }
+      #wraper {
+        position: absolute;
+      }
+      #imageUpload {
+        position: absolute;
+      }
+      img {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>사진 클릭시 나이/성별 예측</h2>
+    <div id="wraper">
+      <div id="uploads">
+        <img id="imageUpload" src="./jisoo.png" alt="jisoo" />
+      </div>
+    </div>
+  </body>
+</html>
