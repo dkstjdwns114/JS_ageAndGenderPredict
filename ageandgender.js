@@ -1,5 +1,3 @@
-const imageUpload = document.getElementById("imageUpload");
-
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
   faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
@@ -15,10 +13,10 @@ async function start() {
 
   let image;
   let canvas;
-  imageUpload.addEventListener("click", async () => {
+  async function predict() {
     if (image) image.remove();
     if (canvas) canvas.remove();
-    image = imageUpload;
+    image = document.getElementById("imageUpload");
     container.append(image);
     canvas = faceapi.createCanvasFromMedia(image);
     container.append(canvas);
@@ -36,11 +34,14 @@ async function start() {
       const { age, gender, genderProbability } = result;
       new faceapi.draw.DrawTextField(
         [
-          `Age: ${faceapi.round(age, 0)} years`,
-          `Gender: ${gender} (${faceapi.round(genderProbability)})`
+          `나이: ${faceapi.round(age, 0)}세`,
+          `성별: ${gender === "female" ? "여자" : "남자"} (${faceapi.round(
+            genderProbability
+          )})`
         ],
         result.detection.box.bottomLeft
       ).draw(canvas);
     });
-  });
+  }
+  predict();
 }
